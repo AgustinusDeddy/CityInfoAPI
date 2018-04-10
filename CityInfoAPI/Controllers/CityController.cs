@@ -25,5 +25,15 @@ namespace CityInfoAPI.Controllers
 
             return Ok(cities);
         }
+
+        [HttpGet("{id}", Name = "GetCity")]
+        public IActionResult GetCity(int id)
+        {
+            var cityFromRepo = _cityInfoRepository.GetCity(id);
+
+            var city = Mapper.Map<CityDto>(cityFromRepo);
+
+            return Ok(city);
+        }
     }
 }

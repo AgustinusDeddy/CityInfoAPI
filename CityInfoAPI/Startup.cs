@@ -74,6 +74,8 @@ namespace CityInfoAPI
       AutoMapper.Mapper.Initialize(cfg =>
       {
         cfg.CreateMap<City, CityDto>();
+        cfg.CreateMap<Spot, SpotDto>()
+          .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.Name));
       });
 
       //cityInfoContext.EnsureSeedDataForContext();

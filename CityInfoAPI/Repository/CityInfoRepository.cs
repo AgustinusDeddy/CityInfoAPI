@@ -2,6 +2,7 @@
 using System.Linq;
 using CityInfoAPI.Core.Repository;
 using CityInfoAPI.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfoAPI.Repository
 {
@@ -17,6 +18,17 @@ namespace CityInfoAPI.Repository
         {
             var cityEntities = _cityInfoContext.Cities.OrderBy(c => c.Name);
             return cityEntities;
+        }
+
+        public City GetCity(int id)
+        {
+            return _cityInfoContext.Cities.SingleOrDefault(c => c.Id == id);
+        }
+
+        public IEnumerable<Spot> GetSpotsForCity(int cityId)
+        {
+            var spots = _cityInfoContext.Spots.Where(s => s.CityId == cityId).Include(t => t.Type).OrderBy(p => p.Name).ToList();
+            return spots;
         }
     }
 }
