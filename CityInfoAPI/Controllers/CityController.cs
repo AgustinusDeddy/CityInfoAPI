@@ -31,6 +31,9 @@ namespace CityInfoAPI.Controllers
         {
             var cityFromRepo = _cityInfoRepository.GetCity(id);
 
+            if(cityFromRepo == null)
+                return NotFound();
+
             var city = Mapper.Map<CityDto>(cityFromRepo);
 
             return Ok(city);

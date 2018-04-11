@@ -14,6 +14,12 @@ namespace CityInfoAPI.Repository
         {
             _cityInfoContext = cityInfoContext;
         }
+
+        public bool IsCityExist(int id)
+        {
+            return _cityInfoContext.Cities.Any(c => c.Id == id);
+        }
+
         public IEnumerable<City> GetCities()
         {
             var cityEntities = _cityInfoContext.Cities.OrderBy(c => c.Name);
@@ -29,6 +35,11 @@ namespace CityInfoAPI.Repository
         {
             var spots = _cityInfoContext.Spots.Where(s => s.CityId == cityId).Include(t => t.Type).OrderBy(p => p.Name).ToList();
             return spots;
+        }
+
+        public Spot GetSpotForCity(int cityId, int id)
+        {
+            return _cityInfoContext.Spots.Where(s => s.CityId == cityId && s.Id == id).Include(t => t.Type).OrderBy(p => p.Name).SingleOrDefault();
         }
     }
 }
