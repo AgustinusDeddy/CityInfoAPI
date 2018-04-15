@@ -1,6 +1,6 @@
 ﻿namespace CityInfoAPI.Models
 {
-    public class SpotDto
+    public class SpotDto : LinkedResourceBaseDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

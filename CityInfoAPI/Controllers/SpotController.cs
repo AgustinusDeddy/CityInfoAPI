@@ -14,14 +14,16 @@ namespace CityInfoAPI.Controllers
     {
         private readonly ICityInfoRepository _cityInfoRepository;
         private readonly ILogger<SpotController> _logger;
+        private readonly IUrlHelper _urlHelper;
 
-        public SpotController(ICityInfoRepository cityInfoRepository, ILogger<SpotController> logger)
+        public SpotController(ICityInfoRepository cityInfoRepository, ILogger<SpotController> logger, IUrlHelper urlHelper)
         {
             _cityInfoRepository = cityInfoRepository;
             _logger = logger;
+            _urlHelper = urlHelper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetSpotsForCity")]
         public IActionResult GetSpotsInCity(int cityId)
         {
             try
@@ -38,7 +40,15 @@ namespace CityInfoAPI.Controllers
                    
                 var spots = Mapper.Map<IEnumerable<SpotDto>>(spotsFromRepo);
 
-                return Ok(spots);
+                spots = spots.Select(spot =>
+                {
+                    spot = CreateLinksForSpot(spot);
+                    return spot;
+                });
+
+                var wrapper = new LinkedCollectionResourceWrapperDto<SpotDto>(spots);
+
+                return Ok(CreateLinksForSpots(wrapper));
             }
             catch (Exception e)
             {
@@ -59,7 +69,29 @@ namespace CityInfoAPI.Controllers
 
             var spot = Mapper.Map<SpotDto>(spotFromRepo);
 
-            return Ok(spot);
+            return Ok(CreateLinksForSpot(spot));
+        }
+
+        private SpotDto CreateLinksForSpot(SpotDto spot)
+        {
+            spot.Links.Add(new LinkDto(_urlHelper.Link("GetSpot",
+                    new { id = spot.Id }),
+                "self",
+                "GET"));
+
+            return spot;
+        }
+
+        private LinkedCollectionResourceWrapperDto<SpotDto> CreateLinksForSpots(
+            LinkedCollectionResourceWrapperDto<SpotDto> spotsWrapper)
+        {
+            //link to self
+            spotsWrapper.Links.Add(
+                new LinkDto(_urlHelper.Link("GetSpotsForCity", new { }),
+                    "self",
+                    "GET"));
+
+            return spotsWrapper;
         }
     }
 }
