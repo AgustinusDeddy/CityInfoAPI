@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using CityInfoAPI.Core.Repository;
 using CityInfoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CityInfoAPI.Controllers
 {
@@ -11,23 +13,40 @@ namespace CityInfoAPI.Controllers
     public class SpotController : Controller
     {
         private readonly ICityInfoRepository _cityInfoRepository;
+        private readonly ILogger<SpotController> _logger;
 
-        public SpotController(ICityInfoRepository cityInfoRepository)
+        public SpotController(ICityInfoRepository cityInfoRepository, ILogger<SpotController> logger)
         {
             _cityInfoRepository = cityInfoRepository;
+            _logger = logger;
         }
 
         [HttpGet]
         public IActionResult GetSpotsInCity(int cityId)
         {
-            var spotsFromRepo = _cityInfoRepository.GetSpotsForCity(cityId);
+            try
+            {
+                _logger.LogTrace($"Getting list of spotfs for city id : {cityId}");
 
-            if(!spotsFromRepo.Any())
-                return NotFound();
+                var spotsFromRepo = _cityInfoRepository.GetSpotsForCity(cityId);
 
-            var spots = Mapper.Map<IEnumerable<SpotDto>>(spotsFromRepo);
+                if (!spotsFromRepo.Any())
+                {
+                    _logger.LogInformation($"City Id {cityId} is not exist");
+                    return NotFound();
+                }
+                   
+                var spots = Mapper.Map<IEnumerable<SpotDto>>(spotsFromRepo);
 
-            return Ok(spots);
+                return Ok(spots);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Error on getting sports for city : {cityId}");
+                _logger.LogError(e.ToString());
+                throw;
+            }
+            
         }
 
         [HttpGet("{id}", Name = "GetSpot")]

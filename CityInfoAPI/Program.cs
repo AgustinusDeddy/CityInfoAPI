@@ -4,6 +4,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NLog.Web;
 
 namespace CityInfoAPI
 {
@@ -45,6 +46,7 @@ namespace CityInfoAPI
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls(serverBindingUrl)
                 .UseStartup<Startup>()
+                .UseNLog()
                 .Build();
     }
 }
