@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -30,11 +31,18 @@ namespace CityInfoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("jalanjalan",
+                    policy => policy.WithOrigins("http://localhost:8080"));
+            });
+
             services.AddMvc(setupAction =>
                 {
                     setupAction.ReturnHttpNotAcceptable = true;
                     setupAction.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
                     setupAction.InputFormatters.Add(new XmlDataContractSerializerInputFormatter());
+                    setupAction.Filters.Add(new CorsAuthorizationFilterFactory("jalanjalan"));
                 })
                 .AddJsonOptions(options =>
                     {

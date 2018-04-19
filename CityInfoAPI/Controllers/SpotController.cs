@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using CityInfoAPI.Core.Repository;
+using CityInfoAPI.Helpers;
 using CityInfoAPI.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CityInfoAPI.Controllers
 {
     [Route("api/cities/{cityId}/spots")]
+    [EnableCors("jalanjalan")]
     public class SpotController : Controller
     {
         private readonly ICityInfoRepository _cityInfoRepository;
@@ -23,21 +26,57 @@ namespace CityInfoAPI.Controllers
             _urlHelper = urlHelper;
         }
 
+        //[HttpGet(Name = "GetSpotsForCity")]
+        //public IActionResult GetSpotsInCity(int cityId)
+        //{
+        //    try
+        //    {
+        //        _logger.LogTrace($"Getting list of spotfs for city id : {cityId}");
+
+        //        var spotsFromRepo = _cityInfoRepository.GetSpotsForCity(cityId);
+
+        //        if (!spotsFromRepo.Any())
+        //        {
+        //            _logger.LogInformation($"City Id {cityId} is not exist");
+        //            return NotFound();
+        //        }
+                   
+        //        var spots = Mapper.Map<IEnumerable<SpotDto>>(spotsFromRepo);
+
+        //        spots = spots.Select(spot =>
+        //        {
+        //            spot = CreateLinksForSpot(spot);
+        //            return spot;
+        //        });
+
+        //        var wrapper = new LinkedCollectionResourceWrapperDto<SpotDto>(spots);
+
+        //        return Ok(CreateLinksForSpots(wrapper));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        _logger.LogError($"Error on getting sports for city : {cityId}");
+        //        _logger.LogError(e.ToString());
+        //        throw;
+        //    }
+            
+        //}
+
         [HttpGet(Name = "GetSpotsForCity")]
-        public IActionResult GetSpotsInCity(int cityId)
+        public IActionResult GetSpotsInCity(SpotResourceParameters spotResourceParameters)
         {
             try
             {
-                _logger.LogTrace($"Getting list of spotfs for city id : {cityId}");
+                _logger.LogTrace($"Getting list of spotfs for city id : {spotResourceParameters.cityId} with search parameter {spotResourceParameters.SearchQuery} and type = {spotResourceParameters.Type}");
 
-                var spotsFromRepo = _cityInfoRepository.GetSpotsForCity(cityId);
+                var spotsFromRepo = _cityInfoRepository.GetSpotsForCity(spotResourceParameters);
 
                 if (!spotsFromRepo.Any())
                 {
-                    _logger.LogInformation($"City Id {cityId} is not exist");
+                    _logger.LogInformation($"City Id {spotResourceParameters.cityId} is not exist");
                     return NotFound();
                 }
-                   
+
                 var spots = Mapper.Map<IEnumerable<SpotDto>>(spotsFromRepo);
 
                 spots = spots.Select(spot =>
@@ -52,11 +91,11 @@ namespace CityInfoAPI.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"Error on getting sports for city : {cityId}");
+                _logger.LogError($"Error on getting sports for city : {spotResourceParameters.cityId}");
                 _logger.LogError(e.ToString());
                 throw;
             }
-            
+
         }
 
         [HttpGet("{id}", Name = "GetSpot")]
