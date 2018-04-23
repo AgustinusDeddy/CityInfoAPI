@@ -75,56 +75,64 @@ namespace CityInfoAPI.Entities
               //Id = 1,
               Name = "Candi Prambanan",
               SpotTypeId = 1,
-              Description = "A UNESCO World Heritage Site and one of the largest Hindhu temple in South East Asia."
+              Description = "A UNESCO World Heritage Site and one of the largest Hindhu temple in South East Asia.",
+              PreviewImage = "prambanan_1.jpg"
             },
             new Spot()
             {
               //Id = 2,
               Name = "Timang Beach",
               SpotTypeId = 2,
-              Description = "A white sand beach with a gondola to take you across the sea."
+              Description = "A white sand beach with a gondola to take you across the sea.",
+                PreviewImage = "timang_1.jpg"
             },
             new Spot()
             {
               //Id = 3,
               Name = "Klangon Hill",
               SpotTypeId = 4,
-              Description = "Enjoy the beauth of Merapifrom the highest village in Sleman."
+              Description = "Enjoy the beauth of Merapifrom the highest village in Sleman.",
+              PreviewImage = "klangon_1.jpg"
             },
             new Spot()
             {
               //Id = 4,
               Name = "Ratu Boko",
               SpotTypeId = 4,
-              Description = "A remains of a palace, with a breathtaking sunset."
+              Description = "A remains of a palace, with a breathtaking sunset.",
+              PreviewImage = "ratuboko_1.jpg"
             },
             new Spot()
             {
               //Id = 5,
               Name = "Pengilon Hill",
               SpotTypeId = 4,
-              Description = "Hills with green grass and view of Indian Ocean."
+              Description = "Hills with green grass and view of Indian Ocean.",
+              PreviewImage = "pengilon_1.jpg"
             },
             new Spot()
             {
               //Id = 6,
               Name = "Angkringan Lik Man",
               SpotTypeId = 3,
-              Description = "A place to enjoy \"Kopi Joss\" and spend time with friends"
+              Description = "A place to enjoy \"Kopi Joss\" and spend time with friends",
+              PreviewImage = "likman_1.jpg"
             },
             new Spot()
             {
               //Id = 7,
               Name = "Abhayagiri Restaurant",
               SpotTypeId = 3,
-              Description = "Restaurant with amazing view of Merapi and Prambanan Temple."
+              Description = "Restaurant with amazing view of Merapi and Prambanan Temple.",
+              PreviewImage = "abhayagiri_1.jpg"
             },
             new Spot()
             {
               //Id = 8,
               Name = "Jejamuran",
               SpotTypeId = 3,
-              Description = "A restaurant with menus that use mushroom as main ingredient."
+              Description = "A restaurant with menus that use mushroom as main ingredient.",
+              PreviewImage = "jejamuran_1.jpg"
             }
           }
         },
