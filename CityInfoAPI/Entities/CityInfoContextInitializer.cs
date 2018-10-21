@@ -76,6 +76,7 @@ namespace CityInfoAPI.Entities
               Name = "Candi Prambanan",
               SpotTypeId = 1,
               Description = "A UNESCO World Heritage Site and one of the largest Hindhu temple in South East Asia.",
+              Explanation = "Prambanan Temple is a 9th-century Hindu temple compound in Central Java, Indonesia, dedicated to the Trimurti, the expression of God as the Creator (Brahma), the Preserver (Vishnu) and the Transformer (Shiva). The temple compound is located approximately 17 kilometres (11 mi) northeast of the city of Yogyakarta on the boundary between Central Java and Yogyakarta provinces.",
               PreviewImage = "prambanan_1.jpg"
             },
             new Spot()
@@ -84,7 +85,8 @@ namespace CityInfoAPI.Entities
               Name = "Timang Beach",
               SpotTypeId = 2,
               Description = "A white sand beach with a gondola to take you across the sea.",
-                PreviewImage = "timang_1.jpg"
+              Explanation = "Timang beach is a beach attraction is a region at the boundary between the sea and the land that is located in Gunungkidul, Yogyakarta, Indonesia. The uniqueness of this beach is that there is an island called Panjang Island which is lobster habitat across coastal marine",
+              PreviewImage = "timang_1.jpg"
             },
             new Spot()
             {
@@ -92,6 +94,7 @@ namespace CityInfoAPI.Entities
               Name = "Klangon Hill",
               SpotTypeId = 4,
               Description = "Enjoy the beauth of Merapifrom the highest village in Sleman.",
+              Explanation = "Klangon is a Hill that is located right under the foot of Mount Merapi. Administratively located in the village of Galagaharjo, district Cangkringan, Sleman Regency, Yogyakarta special region. Arguably a bit scary location visitors, as it is located at the point of disaster-prone areas 3.",
               PreviewImage = "klangon_1.jpg"
             },
             new Spot()
@@ -100,6 +103,7 @@ namespace CityInfoAPI.Entities
               Name = "Ratu Boko",
               SpotTypeId = 4,
               Description = "A remains of a palace, with a breathtaking sunset.",
+              Explanation = "Ratu Boko is an archaeological site in Java. Ratu Boko is located on a plateau, in Yogyakarta, Indonesia. The original name of this site is still unclear, however the local inhabitants named this site after King Boko, the legendary king mentioned in Loro Jonggrang folklore. In Javanese, Ratu Boko means \"Stork King\"",
               PreviewImage = "ratuboko_1.jpg"
             },
             new Spot()
@@ -108,6 +112,7 @@ namespace CityInfoAPI.Entities
               Name = "Pengilon Hill",
               SpotTypeId = 4,
               Description = "Hills with green grass and view of Indian Ocean.",
+              Explanation = "Hills with green grass and on the south side is the vast sea. of and I realize how great is our God. Instagram-able for those who likes selfie.",
               PreviewImage = "pengilon_1.jpg"
             },
             new Spot()
@@ -116,6 +121,7 @@ namespace CityInfoAPI.Entities
               Name = "Angkringan Lik Man",
               SpotTypeId = 3,
               Description = "A place to enjoy \"Kopi Joss\" and spend time with friends",
+              Explanation = "Angkringan is food stall selling rice, side dishes and drinks at very cheap prices. Angkringan Lik Man is serving special drink, namely Kopi Joss or Coffee Joss, this place once was the place for spending the night by some popular leaders of Indonesia.",
               PreviewImage = "likman_1.jpg"
             },
             new Spot()
@@ -124,6 +130,7 @@ namespace CityInfoAPI.Entities
               Name = "Abhayagiri Restaurant",
               SpotTypeId = 3,
               Description = "Restaurant with amazing view of Merapi and Prambanan Temple.",
+              Explanation = "Abhayagiri Restaurant is a restaurant located in Sumberwatu Village, Prambanan. With a startling view of Mount Merapi, Prambanan and Sojiwan Temple. Serving variety of international menu with the freshest ingredients, Abhayagiri Restaurant will be the right choice of your culinary destination in Yogyakarta.",
               PreviewImage = "abhayagiri_1.jpg"
             },
             new Spot()
@@ -132,6 +139,7 @@ namespace CityInfoAPI.Entities
               Name = "Jejamuran",
               SpotTypeId = 3,
               Description = "A restaurant with menus that use mushroom as main ingredient.",
+              Explanation = "Jejamuran restaurant was founded in 2006 by Ratidjo Hardjo Soewarno in an effort to sell the mushrooms are abundant of his mushroom cultivation. At the beginning ‘Jejamuran’ just a simple shop that was built in front of the house with a storefront and a lincak.",
               PreviewImage = "jejamuran_1.jpg"
             }
           }

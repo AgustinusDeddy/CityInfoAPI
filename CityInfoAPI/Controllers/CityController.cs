@@ -16,6 +16,10 @@ namespace CityInfoAPI.Controllers
             _cityInfoRepository = cityInfoRepository;
         }
 
+        /// <summary>
+        /// Retrieve list of cities
+        /// </summary>
+        /// <returns>Cities</returns>
         [HttpGet(Name = "GetCities")]
         public IActionResult GetCities()
         {
@@ -26,10 +30,18 @@ namespace CityInfoAPI.Controllers
             return Ok(cities);
         }
 
+        /// <summary>
+        /// Returns a city matching provided city id.
+        /// </summary>
+        /// <remarks>
+        /// Here is a sample remarks placeholder.
+        /// </remarks>
+        /// <param name="cityId">The city id to search for</param>
+        /// <returns>A city</returns>
         [HttpGet("{id}", Name = "GetCity")]
-        public IActionResult GetCity(int id)
+        public IActionResult GetCity(int cityId)
         {
-            var cityFromRepo = _cityInfoRepository.GetCity(id);
+            var cityFromRepo = _cityInfoRepository.GetCity(cityId);
 
             if(cityFromRepo == null)
                 return NotFound();

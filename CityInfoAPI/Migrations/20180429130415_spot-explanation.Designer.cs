@@ -11,9 +11,10 @@ using System;
 namespace CityInfoAPI.Migrations
 {
     [DbContext(typeof(CityInfoContext))]
-    partial class CityInfoContextModelSnapshot : ModelSnapshot
+    [Migration("20180429130415_spot-explanation")]
+    partial class spotexplanation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +44,7 @@ namespace CityInfoAPI.Migrations
                         .HasMaxLength(200);
 
                     b.Property<string>("Explanation")
-                        .HasMaxLength(500);
+                        .HasMaxLength(350);
 
                     b.Property<string>("Name")
                         .IsRequired()

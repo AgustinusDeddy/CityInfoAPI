@@ -15,6 +15,9 @@ namespace CityInfoAPI.Entities
         [MaxLength(200)]
         public string Description { get; set; }
 
+        [MaxLength(500)]
+        public string Explanation { get; set; }
+
         public int SpotTypeId { get; set; }
         [ForeignKey("SpotTypeId")]
         public SpotType Type { get; set; }
